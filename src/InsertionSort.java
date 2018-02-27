@@ -20,10 +20,24 @@ public class InsertionSort {
 
     }
 
+    static void insertionSort(int[] array, int l, int r) {
+
+        for (int i = l + 1; i <= r; i++) {
+            int current = array[i];
+            int j = i;
+            for (; j > l && array[j - 1] > current; j--) {
+                array[j] = array[j - 1];
+            }
+            array[j] = current;
+        }
+    }
+
 
     public static void main(String[] args) {
         int[] array = ArraysUtil.generateDisorderArray(0, 100, 15);
         System.out.println(Arrays.toString(array));
+        insertionSort(array, 5, 10);
+        System.out.println(Arrays.toString(Arrays.copyOfRange(array, 5, 11)));
         insertionSort(array);
         System.out.println(Arrays.toString(array));
     }

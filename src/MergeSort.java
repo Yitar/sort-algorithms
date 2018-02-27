@@ -1,3 +1,5 @@
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.Arrays;
 
 /**
@@ -13,13 +15,18 @@ public class MergeSort {
 
     private static void mergeSort(int[] array, int l, int r) {
 
-        if (l >= r) {
+        //数组小到一定返回，使用插入排序
+        if (r - l <= 3) {
+            InsertionSort.insertionSort(array, l, r);
             return;
         }
         int mid = (l + r) / 2;
         mergeSort(array, l, mid);
         mergeSort(array, mid + 1, r);
-        merge(array, l, mid, r);
+        //两部分分别有序，无序归并
+        if (array[mid] > array[mid + 1]) {
+            merge(array, l, mid, r);
+        }
 
 
     }
@@ -52,9 +59,13 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-        int[] array = ArraysUtil.generateDisorderArray(0, 100, 15);
+        int[] array = ArraysUtil.generateDisorderArray(0, 100000, 10000);
         System.out.println(Arrays.toString(array));
+        LocalTime start = LocalTime.now();
         mergeSort(array);
+        LocalTime end = LocalTime.now();
         System.out.println(Arrays.toString(array));
+        System.out.println(Duration.between(start, end));
+
     }
 }
