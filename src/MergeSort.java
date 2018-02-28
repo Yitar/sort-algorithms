@@ -31,7 +31,7 @@ public class MergeSort {
 
     }
 
-    private static void merge(int[] array, int l, int mid, int r) {
+    static void merge(int[] array, int l, int mid, int r) {
 
         //Arrays.copyOfRange 包括from 不包括to
         int[] aux = Arrays.copyOfRange(array, l, r + 1);
