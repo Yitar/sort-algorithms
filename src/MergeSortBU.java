@@ -9,7 +9,7 @@ public class MergeSortBU {
         int n = array.length;
         for (int size = 1; size < n; size += size) {
             for (int i = 0; i + size < n; i += size + size) {
-                MergeSort.merge(array, i, i + size - 1,i + size + size - 1 > n ? n : i + size + size - 1);
+                MergeSort.merge(array, i, i + size - 1, i + size + size - 1 > n ? n - 1 : i + size + size - 1);
             }
         }
     }
